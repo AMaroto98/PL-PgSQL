@@ -13,5 +13,4 @@ BEGIN
         );
 END $$ LANGUAGE plpgsql;
 
--- Para comprobar que funciona:
 -- CALL crear_email('Juan'::varchar, 'Perez'::varchar, 'Garcia'::varchar, 'email'::varchar);

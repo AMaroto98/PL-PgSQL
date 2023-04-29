@@ -9,6 +9,3 @@ BEGIN
     RETURN media;
 END;
 $$ LANGUAGE plpgsql;
-
--- Para comprobar que funciona:
--- SELECT calcular_media();
