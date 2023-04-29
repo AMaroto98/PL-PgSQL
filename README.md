@@ -14,8 +14,8 @@
 
 - [Function](#function)
 - [Procedure](#procedure)
-- Trigger
-- Cursor
+- [Trigger](#trigger)
+- [Cursor](#cursor)
 
 ---
 
@@ -170,6 +170,14 @@ As we can see the note that we have inserted has gone from 87 to 10. The previou
 
 ### Cursor
 
+The file containing the cursor for the database can be found in the `src` folder.
 
+The cursor goes through the table "students" and saves each row in the variable "student". Then, at each iteration of the loop, the data of the row stored in the variable "student" is printed using the RAISE NOTICE command.
+
+To verify that it works correctly we will copy the content of the `Cursor.sql` file inside the `scr` folder and paste it in the postgres terminal.
+
+And we will get the following output:
+
+![Cursor](/images/Cursor.png)
 
 ---
