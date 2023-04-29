@@ -1,0 +1,3 @@
+# PLpgSQL
+
+DROP DATABASE test;
