@@ -3,14 +3,19 @@
 ## Index
 
 - [What is PLpgSQL?](#what-is-plpgsql)
-- Manual
-  - Requirements
-  - Installation
-- Import database and content
-  - Database
-    - From outside of Postgres
-    - From inside of Postgres
 
+- [Manual](#manual)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+
+- [Import database and content](#import-database-and-content)
+    - [From outside of Postgres](#from-outside-of-postgres)
+    - [From inside of Postgres](#from-inside-of-postgres)
+
+- [Function](#function)
+- [Procedure](#procedure)
+- Trigger
+- Cursor
 
 ---
 
@@ -49,17 +54,17 @@ git clone https://github.com/AMaroto98/PLpgSQL
 
 ### Import database and content
 
-Hay dos formas de importar una base de datos y su contenido a Postgre:
+There are two ways to import a database and its contents into Postgre:
 
 #### From outside of Postgres
 
-Nos situamos en el mismo directorio donde esté el script con el código y ejecutamos el siguiente comando:
+We place ourselves in the same directory where the script with the code is and execute the following command:
 
 ~~~
 psql -U "username" -W < Database.sql
 ~~~
 
-Repetimos lo mimso para el contenido:
+We repeat the same for the content:
 
 ~~~
 psql -U "username" -W < Inserts.sql
@@ -69,19 +74,19 @@ psql -U "username" -W < Inserts.sql
 
 #### From inside of Postgres
 
-Nos situamos en el mismo directorio donde esté el script con el código y ejecutamos postgres con el siguiente comando:
+We place ourselves in the same directory where the script with the code is and execute postgres with the following command:
 
 ~~~
 psql
 ~~~
 
-Una vez dentro ejecutamos el siguiente comando:
+Once inside we execute the following command:
 
 ~~~
 \i Database.sql
 ~~~
 
-Repetimos lo mismo pero esta vez para el contenido de la base de datos:
+We repeat the same thing but this time for the database content:
 
 ~~~
 \i Inserts.sql
@@ -115,7 +120,7 @@ And we will get the following output:
 
 The file containing the procedure for the database can be found in the `src` folder.
 
-The trigger generates an email for each student by selecting the first letter of the first name and the first three letters of each last name and adding the school domain.
+The procedure generates an email for each student by selecting the first letter of the first name and the first three letters of each last name and adding the school domain.
 
 To import the function to Postgres you can do it in the same way that we have imported the database and the data of this one.
 
@@ -137,8 +142,34 @@ And we will get the following output:
 
 ### Trigger
 
+The file containing the trigger for the database can be found in the `src` folder.
+
+A trigger is a PostgreSQL structure used to execute a predefined function when an event occurs. In itself, the trigger has no internal logic, it simply executes the function that we have defined in the same file.
+
+In the case of this database, two similar triggers have been created that are triggered when student grades are inserted or updated. If the grades are incorrect, that is, if they are negative numbers or greater than 10, the trigger automatically corrects the value.
+
+To better understand this process, let's see an example:
+
+This is the table with the data we entered at the beginning:
+
+![Before](/images/Before.png)
+
+Now we import the Triggers and Functions in the same way as in the previous cases.
+
+Now we will introduce the next student with incorrect grades:
+
+~~~
+INSERT INTO alumnos (id, nombre, apellido1, apellido2, nota, email) VALUES (99, 'Prueba', 'Prueba', 'Prueba', 87, NULL);
+~~~
+
+![After](/images/After.png)
+
+As we can see the note that we have inserted has gone from 87 to 10. The previous notes have not been modified because when we entered the data the first time these triggers were not in the database.
+
 ---
 
 ### Cursor
+
+
 
 ---
