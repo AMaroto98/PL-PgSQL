@@ -12,5 +12,3 @@ BEGIN
         '@cifpfbmoll.eu'
         );
 END $$ LANGUAGE plpgsql;
-
--- CALL crear_email('Juan'::varchar, 'Perez'::varchar, 'Garcia'::varchar, 'email'::varchar);

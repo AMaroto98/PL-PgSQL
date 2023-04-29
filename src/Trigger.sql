@@ -16,7 +16,7 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER trigger_check_nota_before_insert
 BEFORE INSERT ON alumnos
 FOR EACH ROW
-EXECUTE FUNCTION CheckNotaInsert();
+EXECUTE FUNCTION check_nota_before_insert();
 
 
 
@@ -35,17 +35,10 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER trigger_check_nota_before_Update
 BEFORE UPDATE ON alumnos
 FOR EACH ROW
-EXECUTE FUNCTION CheckNotaUpdate();
+EXECUTE FUNCTION check_nota_before_update();
 
 -- Comandos para eliminar Triggers y funciones:
 
 -- DROP TRIGGER trigger_check_nota_before_insert ON alumnos;
 
 -- DROP FUNCTION trigger_check_nota_before_insert();
-
-
--- Comando para ver todos los Triggers que tengo:
-
--- SELECT trigger_name, event_object_table, action_timing, event_manipulation
--- FROM information_schema.triggers
--- WHERE trigger_schema NOT IN ('pg_catalog', 'information_schema');
